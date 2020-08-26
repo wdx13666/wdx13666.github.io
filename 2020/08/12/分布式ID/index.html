@@ -1,0 +1,967 @@
+
+
+<!DOCTYPE html>
+<html lang="en" >
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="wdx">
+  <meta name="keywords" content="">
+  <title>分布式ID - Tuan Dog</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.6.2/gitalk.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>TUAN DOG</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                Links
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-12 15:08" pubdate>
+      August 12, 2020 pm
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      56
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">分布式ID</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <h2 id="一、为什么要用分布式ID？"><a href="#一、为什么要用分布式ID？" class="headerlink" title="一、为什么要用分布式ID？"></a>一、为什么要用分布式ID？</h2><p>在说分布式ID的具体实现之前，我们来简单分析一下为什么用分布式ID？分布式ID应该满足哪些特征？</p>
+<p><strong>1、什么是分布式ID？</strong></p>
+<p>拿MySQL数据库举个栗子：</p>
+<p>在我们业务数据量不大的时候，单库单表完全可以支撑现有业务，数据再大一点搞个MySQL主从同步读写分离也能对付。</p>
+<p>但随着数据日渐增长，主从同步也扛不住了，就需要对数据库进行分库分表，但分库分表后需要有一个唯一ID来标识一条数据，数据库的自增ID显然不能满足需求；特别一点的如订单、优惠券也都需要有<code>唯一ID</code>做标识。此时一个能够生成<code>全局唯一ID</code>的系统是非常必要的。那么这个<code>全局唯一ID</code>就叫<code>分布式ID</code>。</p>
+<p><strong>2、那么分布式ID需要满足那些条件？</strong></p>
+<ul>
+<li>全局唯一：必须保证ID是全局性唯一的，基本要求</li>
+<li>高性能：高可用低延时，ID生成响应要块，否则反倒会成为业务瓶颈</li>
+<li>高可用：100%的可用性是骗人的，但是也要无限接近于100%的可用性</li>
+<li>好接入：要秉着拿来即用的设计原则，在系统设计和实现上要尽可能的简单</li>
+<li>趋势递增：最好趋势递增，这个要求就得看具体业务场景了，一般不严格要求</li>
+</ul>
+<h2 id="二、-分布式ID都有哪些生成方式？"><a href="#二、-分布式ID都有哪些生成方式？" class="headerlink" title="二、 分布式ID都有哪些生成方式？"></a>二、 分布式ID都有哪些生成方式？</h2><p>今天主要分析一下以下9种，分布式ID生成器方式以及优缺点：</p>
+<ul>
+<li>UUID</li>
+<li>数据库自增ID</li>
+<li>数据库多主模式</li>
+<li>号段模式</li>
+<li>Redis</li>
+<li>雪花算法（SnowFlake）</li>
+<li>滴滴出品（TinyID）</li>
+<li>百度 （Uidgenerator）</li>
+<li>美团（Leaf）</li>
+</ul>
+<p>那么它们都是如何实现？以及各自有什么优缺点？我们往下看</p>
+<p><strong>1、基于UUID</strong></p>
+<p>在Java的世界里，想要得到一个具有唯一性的ID，首先被想到可能就是<code>UUID</code>，毕竟它有着全球唯一的特性。那么<code>UUID</code>可以做<code>分布式ID</code>吗？<strong>答案是可以的，但是并不推荐！</strong></p>
+<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123; 
+       String uuid = UUID.randomUUID().toString().replaceAll(<span class="hljs-string">"-"</span>,<span class="hljs-string">""</span>);
+       System.out.println(uuid);
+ &#125;</code></pre>
+
+<p><code>UUID</code>的生成简单到只有一行代码，输出结果 <code>c2b8c2b9e46c47e3b30dca3b0d447718</code>，但UUID却并不适用于实际的业务需求。像用作订单号<code>UUID</code>这样的字符串没有丝毫的意义，看不出和订单相关的有用信息；而对于数据库来说用作业务<code>主键ID</code>，它不仅是太长还是字符串，存储性能差查询也很耗时，所以不推荐用作<code>分布式ID</code>。</p>
+<p><strong>优点：</strong></p>
+<ul>
+<li>生成足够简单，本地生成无网络消耗，具有唯一性</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>无序的字符串，不具备趋势自增特性</li>
+<li>没有具体的业务含义</li>
+<li>长度过长16 字节128位，36位长度的字符串，存储以及查询对MySQL的性能消耗较大，MySQL官方明确建议主键要尽量越短越好，作为数据库主键 <code>UUID</code> 的无序性会导致数据位置频繁变动，严重影响性能。</li>
+</ul>
+<p><strong>2、基于数据库自增ID</strong></p>
+<p>基于数据库的<code>auto_increment</code>自增ID完全可以充当<code>分布式ID</code>，具体实现：需要一个单独的MySQL实例用来生成ID，建表结构如下：</p>
+<pre><code class="hljs java">CREATE DATABASE `SEQ_ID`;
+CREATE TABLE SEQID.SEQUENCE_ID (
+    <span class="hljs-function">id <span class="hljs-title">bigint</span><span class="hljs-params">(<span class="hljs-number">20</span>)</span> unsigned NOT NULL auto_increment, </span>
+<span class="hljs-function">    value <span class="hljs-title">char</span><span class="hljs-params">(<span class="hljs-number">10</span>)</span> NOT NULL <span class="hljs-keyword">default</span> '',</span>
+<span class="hljs-function">    PRIMARY <span class="hljs-title">KEY</span> <span class="hljs-params">(id)</span>,</span>
+<span class="hljs-function">) ENGINE</span>=MyISAM;</code></pre>
+
+
+
+<pre><code class="hljs java"><span class="hljs-function">insert into <span class="hljs-title">SEQUENCE_ID</span><span class="hljs-params">(value)</span>  <span class="hljs-title">VALUES</span> <span class="hljs-params">(<span class="hljs-string">'values'</span>)</span></span>;</code></pre>
+
+<p>当我们需要一个ID的时候，向表中插入一条记录返回<code>主键ID</code>，但这种方式有一个比较致命的缺点，访问量激增时MySQL本身就是系统的瓶颈，用它来实现分布式服务风险比较大，不推荐！</p>
+<p><strong>优点：</strong></p>
+<ul>
+<li>实现简单，ID单调自增，数值类型查询速度快</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>DB单点存在宕机风险，无法扛住高并发场景</li>
+</ul>
+<p><strong>3、基于数据库集群模式</strong></p>
+<p>前边说了单点数据库方式不可取，那对上边的方式做一些高可用优化，换成主从模式集群。害怕一个主节点挂掉没法用，那就做双主模式集群，也就是两个Mysql实例都能单独的生产自增ID。</p>
+<p>那这样还会有个问题，两个MySQL实例的自增ID都从1开始，<strong>会生成重复的ID怎么办？</strong></p>
+<p><strong>解决方案</strong>：设置<code>起始值</code>和<code>自增步长</code></p>
+<p>MySQL_1 配置：</p>
+<pre><code class="hljs java">set @<span class="hljs-meta">@auto</span>_increment_offset = <span class="hljs-number">1</span>;     -- 起始值
+set @<span class="hljs-meta">@auto</span>_increment_increment = <span class="hljs-number">2</span>;  -- 步长</code></pre>
+
+<p>MySQL_2 配置：</p>
+<pre><code class="hljs java">set @<span class="hljs-meta">@auto</span>_increment_offset = <span class="hljs-number">2</span>;     -- 起始值
+set @<span class="hljs-meta">@auto</span>_increment_increment = <span class="hljs-number">2</span>;  -- 步长</code></pre>
+
+<p>这样两个MySQL实例的自增ID分别就是：</p>
+<blockquote>
+<p>1、3、5、7、9 2、4、6、8、10</p>
+</blockquote>
+<p>那如果集群后的性能还是扛不住高并发咋办？就要进行MySQL扩容增加节点，这是一个比较麻烦的事。</p>
+<p><img src="https://pic3.zhimg.com/80/v2-a7f8c5f285c3269becc8351cdc703b2a_720w.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p>从上图可以看出，水平扩展的数据库集群，有利于解决数据库单点压力的问题，同时为了ID生成特性，将自增步长按照机器数量来设置。</p>
+<p>增加第三台<code>MySQL</code>实例需要人工修改一、二两台<code>MySQL实例</code>的起始值和步长，把<code>第三台机器的ID</code>起始生成位置设定在比现有<code>最大自增ID</code>的位置远一些，但必须在一、二两台<code>MySQL实例</code>ID还没有增长到<code>第三台MySQL实例</code>的<code>起始ID</code>值的时候，否则<code>自增ID</code>就要出现重复了，<strong>必要时可能还需要停机修改</strong>。</p>
+<p><strong>优点：</strong></p>
+<ul>
+<li>解决DB单点问题</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>不利于后续扩容，而且实际上单个数据库自身压力还是大，依旧无法满足高并发场景。</li>
+</ul>
+<p><strong>4、基于数据库的号段模式</strong></p>
+<p>号段模式是当下分布式ID生成器的主流实现方式之一，号段模式可以理解为从数据库批量的获取自增ID，每次从数据库取出一个号段范围，例如 (1,1000] 代表1000个ID，具体的业务服务将本号段，生成1~1000的自增ID并加载到内存。表结构如下：</p>
+<pre><code class="hljs java"><span class="hljs-function">CREATE TABLE <span class="hljs-title">id_generator</span> <span class="hljs-params">(</span></span>
+<span class="hljs-function"><span class="hljs-params">  id <span class="hljs-keyword">int</span>(<span class="hljs-number">10</span>)</span> NOT NULL,</span>
+<span class="hljs-function">  max_id <span class="hljs-title">bigint</span><span class="hljs-params">(<span class="hljs-number">20</span>)</span> NOT NULL COMMENT '当前最大id',</span>
+<span class="hljs-function">  step <span class="hljs-title">int</span><span class="hljs-params">(<span class="hljs-number">20</span>)</span> NOT NULL COMMENT '号段的布长',</span>
+<span class="hljs-function">  biz_type	<span class="hljs-title">int</span><span class="hljs-params">(<span class="hljs-number">20</span>)</span> NOT NULL COMMENT '业务类型',</span>
+<span class="hljs-function">  version <span class="hljs-title">int</span><span class="hljs-params">(<span class="hljs-number">20</span>)</span> NOT NULL COMMENT '版本号',</span>
+<span class="hljs-function">  PRIMARY <span class="hljs-title">KEY</span> <span class="hljs-params">(`id`)</span></span>
+<span class="hljs-function">)</span></code></pre>
+
+<p>biz_type ：代表不同业务类型</p>
+<p>max_id ：当前最大的可用id</p>
+<p>step ：代表号段的长度</p>
+<p>version ：是一个乐观锁，每次都更新version，保证并发时数据的正确性</p>
+<p><img src="https://pic3.zhimg.com/80/v2-abc2633c6ff85daf95fca018f717a24e_720w.png" srcset="/img/loading.gif" alt="img"></p>
+<p>等这批号段ID用完，再次向数据库申请新号段，对<code>max_id</code>字段做一次<code>update</code>操作，<code>update max_id= max_id + step</code>，update成功则说明新号段获取成功，新的号段范围是<code>(max_id ,max_id +step]</code>。</p>
+<pre><code class="hljs java">update id_generator set max_id = #&#123;max_id+step&#125;, version = version + 1 where version = # &#123;version&#125; and biz_type = XXX</code></pre>
+
+<p>由于多业务端可能同时操作，所以采用版本号<code>version</code>乐观锁方式更新，这种<code>分布式ID</code>生成方式不强依赖于数据库，不会频繁的访问数据库，对数据库的压力小很多。</p>
+<p><strong>5、基于Redis模式</strong></p>
+<p><code>Redis</code>也同样可以实现，原理就是利用<code>redis</code>的 <code>incr</code>命令实现ID的原子性自增。</p>
+<pre><code class="hljs java"><span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>:<span class="hljs-number">6379</span>&gt; set seq_id <span class="hljs-number">1</span>     <span class="hljs-comment">// 初始化自增ID为1</span>
+OK
+<span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>:<span class="hljs-number">6379</span>&gt; incr seq_id      <span class="hljs-comment">// 增加1，并返回递增后的数值</span>
+(integer) <span class="hljs-number">2</span></code></pre>
+
+<p>用<code>redis</code>实现需要注意一点，要考虑到redis持久化的问题。<code>redis</code>有两种持久化方式<code>RDB</code>和<code>AOF</code></p>
+<ul>
+<li><code>RDB</code>会定时打一个快照进行持久化，假如连续自增但<code>redis</code>没及时持久化，而这会Redis挂掉了，重启Redis后会出现ID重复的情况。</li>
+<li><code>AOF</code>会对每条写命令进行持久化，即使<code>Redis</code>挂掉了也不会出现ID重复的情况，但由于incr命令的特殊性，会导致<code>Redis</code>重启恢复的数据时间过长。</li>
+</ul>
+<p><strong>6、基于雪花算法（Snowflake）模式</strong></p>
+<p>雪花算法（Snowflake）是twitter公司内部分布式项目采用的ID生成算法，开源后广受国内大厂的好评，在该算法影响下各大公司相继开发出各具特色的分布式生成器。</p>
+<p><img src="https://pic2.zhimg.com/80/v2-4f51c7b6704323cc376b5a8a9a7cad09_720w.jpg" srcset="/img/loading.gif" alt="img">图片源自网络，如有侵权联系删除</p>
+<p><code>Snowflake</code>生成的是Long类型的ID，一个Long类型占8个字节，每个字节占8比特，也就是说一个Long类型占64个比特。</p>
+<p>Snowflake ID组成结构：<code>正数位</code>（占1比特）+ <code>时间戳</code>（占41比特）+ <code>机器ID</code>（占5比特）+ <code>数据中心</code>（占5比特）+ <code>自增值</code>（占12比特），总共64比特组成的一个Long类型。</p>
+<ul>
+<li>第一个bit位（1bit）：Java中long的最高位是符号位代表正负，正数是0，负数是1，一般生成ID都为正数，所以默认为0。</li>
+<li>时间戳部分（41bit）：毫秒级的时间，不建议存当前时间戳，而是用（当前时间戳 - 固定开始时间戳）的差值，可以使产生的ID从更小的值开始；41位的时间戳可以使用69年，(1L &lt;&lt; 41) / (1000L * 60 * 60 * 24 * 365) = 69年</li>
+<li>工作机器id（10bit）：也被叫做<code>workId</code>，这个可以灵活配置，机房或者机器号组合都可以。</li>
+<li>序列号部分（12bit），自增值支持同一毫秒内同一个节点可以生成4096个ID</li>
+</ul>
+<p>根据这个算法的逻辑，只需要将这个算法用Java语言实现出来，封装为一个工具方法，那么各个业务应用可以直接使用该工具方法来获取分布式ID，只需保证每个业务应用有自己的工作机器id即可，而不需要单独去搭建一个获取分布式ID的应用。</p>
+<p><strong>Java版本的<code>Snowflake</code>算法实现：</strong></p>
+<pre><code class="hljs java"><span class="hljs-comment">/**</span>
+<span class="hljs-comment"> * Twitter的SnowFlake算法,使用SnowFlake算法生成一个整数，然后转化为62进制变成一个短地址URL</span>
+<span class="hljs-comment"> *</span>
+<span class="hljs-comment"> * https://github.com/beyondfengyu/SnowFlake</span>
+<span class="hljs-comment"> */</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SnowFlakeShortUrl</span> </span>&#123;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 起始的时间戳</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">long</span> START_TIMESTAMP = <span class="hljs-number">1480166465631L</span>;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 每一部分占用的位数</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">long</span> SEQUENCE_BIT = <span class="hljs-number">12</span>;   <span class="hljs-comment">//序列号占用的位数</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">long</span> MACHINE_BIT = <span class="hljs-number">5</span>;     <span class="hljs-comment">//机器标识占用的位数</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">long</span> DATA_CENTER_BIT = <span class="hljs-number">5</span>; <span class="hljs-comment">//数据中心占用的位数</span>
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 每一部分的最大值</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">long</span> MAX_SEQUENCE = -<span class="hljs-number">1L</span> ^ (-<span class="hljs-number">1L</span> &lt;&lt; SEQUENCE_BIT);
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">long</span> MAX_MACHINE_NUM = -<span class="hljs-number">1L</span> ^ (-<span class="hljs-number">1L</span> &lt;&lt; MACHINE_BIT);
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">long</span> MAX_DATA_CENTER_NUM = -<span class="hljs-number">1L</span> ^ (-<span class="hljs-number">1L</span> &lt;&lt; DATA_CENTER_BIT);
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 每一部分向左的位移</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">long</span> MACHINE_LEFT = SEQUENCE_BIT;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">long</span> DATA_CENTER_LEFT = SEQUENCE_BIT + MACHINE_BIT;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">long</span> TIMESTAMP_LEFT = DATA_CENTER_LEFT + DATA_CENTER_BIT;
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">long</span> dataCenterId;  <span class="hljs-comment">//数据中心</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">long</span> machineId;     <span class="hljs-comment">//机器标识</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">long</span> sequence = <span class="hljs-number">0L</span>; <span class="hljs-comment">//序列号</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">long</span> lastTimeStamp = -<span class="hljs-number">1L</span>;  <span class="hljs-comment">//上一次时间戳</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">long</span> <span class="hljs-title">getNextMill</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">long</span> mill = getNewTimeStamp();
+        <span class="hljs-keyword">while</span> (mill &lt;= lastTimeStamp) &#123;
+            mill = getNewTimeStamp();
+        &#125;
+        <span class="hljs-keyword">return</span> mill;
+    &#125;
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">long</span> <span class="hljs-title">getNewTimeStamp</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">return</span> System.currentTimeMillis();
+    &#125;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 根据指定的数据中心ID和机器标志ID生成指定的序列号</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> dataCenterId 数据中心ID</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@param</span> machineId    机器标志ID</span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">SnowFlakeShortUrl</span><span class="hljs-params">(<span class="hljs-keyword">long</span> dataCenterId, <span class="hljs-keyword">long</span> machineId)</span> </span>&#123;
+        <span class="hljs-keyword">if</span> (dataCenterId &gt; MAX_DATA_CENTER_NUM || dataCenterId &lt; <span class="hljs-number">0</span>) &#123;
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException(<span class="hljs-string">"DtaCenterId can't be greater than MAX_DATA_CENTER_NUM or less than 0！"</span>);
+        &#125;
+        <span class="hljs-keyword">if</span> (machineId &gt; MAX_MACHINE_NUM || machineId &lt; <span class="hljs-number">0</span>) &#123;
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException(<span class="hljs-string">"MachineId can't be greater than MAX_MACHINE_NUM or less than 0！"</span>);
+        &#125;
+        <span class="hljs-keyword">this</span>.dataCenterId = dataCenterId;
+        <span class="hljs-keyword">this</span>.machineId = machineId;
+    &#125;
+
+    <span class="hljs-comment">/**</span>
+<span class="hljs-comment">     * 产生下一个ID</span>
+<span class="hljs-comment">     *</span>
+<span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span>
+<span class="hljs-comment">     */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">synchronized</span> <span class="hljs-keyword">long</span> <span class="hljs-title">nextId</span><span class="hljs-params">()</span> </span>&#123;
+        <span class="hljs-keyword">long</span> currTimeStamp = getNewTimeStamp();
+        <span class="hljs-keyword">if</span> (currTimeStamp &lt; lastTimeStamp) &#123;
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> RuntimeException(<span class="hljs-string">"Clock moved backwards.  Refusing to generate id"</span>);
+        &#125;
+
+        <span class="hljs-keyword">if</span> (currTimeStamp == lastTimeStamp) &#123;
+            <span class="hljs-comment">//相同毫秒内，序列号自增</span>
+            sequence = (sequence + <span class="hljs-number">1</span>) &amp; MAX_SEQUENCE;
+            <span class="hljs-comment">//同一毫秒的序列数已经达到最大</span>
+            <span class="hljs-keyword">if</span> (sequence == <span class="hljs-number">0L</span>) &#123;
+                currTimeStamp = getNextMill();
+            &#125;
+        &#125; <span class="hljs-keyword">else</span> &#123;
+            <span class="hljs-comment">//不同毫秒内，序列号置为0</span>
+            sequence = <span class="hljs-number">0L</span>;
+        &#125;
+
+        lastTimeStamp = currTimeStamp;
+
+        <span class="hljs-keyword">return</span> (currTimeStamp - START_TIMESTAMP) &lt;&lt; TIMESTAMP_LEFT <span class="hljs-comment">//时间戳部分</span>
+                | dataCenterId &lt;&lt; DATA_CENTER_LEFT       <span class="hljs-comment">//数据中心部分</span>
+                | machineId &lt;&lt; MACHINE_LEFT             <span class="hljs-comment">//机器标识部分</span>
+                | sequence;                             <span class="hljs-comment">//序列号部分</span>
+    &#125;
+    
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
+        SnowFlakeShortUrl snowFlake = <span class="hljs-keyword">new</span> SnowFlakeShortUrl(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>);
+
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; (<span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">4</span>); i++) &#123;
+            <span class="hljs-comment">//10进制</span>
+            System.out.println(snowFlake.nextId());
+        &#125;
+    &#125;
+&#125;</code></pre>
+
+<p><strong>7、百度（uid-generator）</strong></p>
+<p><code>uid-generator</code>是由百度技术部开发，项目GitHub地址 <a href="https://link.zhihu.com/?target=https%3A//github.com/baidu/uid-generator">github.com/baidu/uid-g…</a></p>
+<p><code>uid-generator</code>是基于<code>Snowflake</code>算法实现的，与原始的<code>snowflake</code>算法不同在于，<code>uid-generator</code>支持自<code>定义时间戳</code>、<code>工作机器ID</code>和 <code>序列号</code> 等各部分的位数，而且<code>uid-generator</code>中采用用户自定义<code>workId</code>的生成策略。</p>
+<p><code>uid-generator</code>需要与数据库配合使用，需要新增一个<code>WORKER_NODE</code>表。当应用启动时会向数据库表中去插入一条数据，插入成功后返回的自增ID就是该机器的<code>workId</code>数据由host，port组成。</p>
+<p><strong>对于<code>uid-generator</code> ID组成结构</strong>：</p>
+<p><code>workId</code>，占用了22个bit位，时间占用了28个bit位，序列化占用了13个bit位，需要注意的是，和原始的<code>snowflake</code>不太一样，时间的单位是秒，而不是毫秒，<code>workId</code>也不一样，而且同一应用每次重启就会消费一个<code>workId</code>。</p>
+<blockquote>
+<p>参考文献 <a href="https://link.zhihu.com/?target=https%3A//github.com/baidu/uid-generator/blob/master/README.zh_cn.md">github.com/baidu/uid-g…</a></p>
+</blockquote>
+<p><strong>8、美团（Leaf）</strong></p>
+<p><code>Leaf</code>由美团开发，github地址：<a href="https://link.zhihu.com/?target=https%3A//github.com/Meituan-Dianping/Leaf">github.com/Meituan-Dia…</a></p>
+<p><code>Leaf</code>同时支持号段模式和<code>snowflake</code>算法模式，可以切换使用。</p>
+<p>号段模式</p>
+<p>先导入源码 <a href="https://link.zhihu.com/?target=https%3A//github.com/Meituan-Dianping/Leaf">github.com/Meituan-Dia…</a> ，在建一张表<code>leaf_alloc</code></p>
+<pre><code class="hljs java">DROP TABLE IF EXISTS `leaf_alloc`;
+
+CREATE TABLE `leaf_alloc` (
+  `biz_tag` varchar(<span class="hljs-number">128</span>)  NOT NULL DEFAULT <span class="hljs-string">''</span> COMMENT <span class="hljs-string">'业务key'</span>,
+  `max_id` bigint(<span class="hljs-number">20</span>) NOT NULL DEFAULT <span class="hljs-string">'1'</span> COMMENT <span class="hljs-string">'当前已经分配了的最大id'</span>,
+  `step` <span class="hljs-keyword">int</span>(<span class="hljs-number">11</span>) NOT NULL COMMENT <span class="hljs-string">'初始步长，也是动态调整的最小步长'</span>,
+  `description` varchar(<span class="hljs-number">256</span>)  DEFAULT NULL COMMENT <span class="hljs-string">'业务key的描述'</span>,
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT <span class="hljs-string">'数据库维护的更新时间'</span>,
+  <span class="hljs-function">PRIMARY <span class="hljs-title">KEY</span> <span class="hljs-params">(`biz_tag`)</span></span>
+<span class="hljs-function">) ENGINE</span>=InnoDB;</code></pre>
+
+<p>然后在项目中开启<code>号段模式</code>，配置对应的数据库信息，并关闭<code>snowflake</code>模式</p>
+<pre><code class="hljs java">leaf.name=com.sankuai.leaf.opensource.test
+leaf.segment.enable=<span class="hljs-keyword">true</span>
+leaf.jdbc.url=jdbc:mysql:<span class="hljs-comment">//localhost:3306/leaf_test?useUnicode=true&amp;characterEncoding=utf8&amp;characterSetResults=utf8</span>
+leaf.jdbc.username=root
+leaf.jdbc.password=root
+
+leaf.snowflake.enable=<span class="hljs-keyword">false</span>
+#leaf.snowflake.zk.address=
+#leaf.snowflake.port=</code></pre>
+
+<p>启动<code>leaf-server</code> 模块的 <code>LeafServerApplication</code>项目就跑起来了</p>
+<p>号段模式获取分布式自增ID的测试url ：http：<a href="https://link.zhihu.com/?target=https%3A//localhost/">//localhost</a>：8080/api/segment/get/leaf-segment-test</p>
+<p>监控号段模式：<a href="https://link.zhihu.com/?target=http%3A//localhost%3A8080/cache">http://localhost:8080/cache</a></p>
+<p>snowflake模式</p>
+<p><code>Leaf</code>的snowflake模式依赖于<code>ZooKeeper</code>，不同于<code>原始snowflake</code>算法也主要是在<code>workId</code>的生成上，<code>Leaf</code>中<code>workId</code>是基于<code>ZooKeeper</code>的顺序Id来生成的，每个应用在使用<code>Leaf-snowflake</code>时，启动时都会都在<code>Zookeeper</code>中生成一个顺序Id，相当于一台机器对应一个顺序节点，也就是一个<code>workId</code>。</p>
+<pre><code class="hljs java">leaf.snowflake.enable=<span class="hljs-keyword">true</span>
+leaf.snowflake.zk.address=<span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>
+leaf.snowflake.port=<span class="hljs-number">2181</span></code></pre>
+
+<p>snowflake模式获取分布式自增ID的测试url：<a href="https://link.zhihu.com/?target=http%3A//localhost%3A8080/api/snowflake/get/test">http://localhost:8080/api/snowflake/get/test</a></p>
+<p><strong>9、滴滴（Tinyid）</strong></p>
+<p><code>Tinyid</code>由滴滴开发，Github地址：<a href="https://link.zhihu.com/?target=https%3A//github.com/didi/tinyid%E3%80%82">github.com/didi/tinyid…</a></p>
+<p><code>Tinyid</code>是基于号段模式原理实现的与<code>Leaf</code>如出一辙，每个服务获取一个号段（1000,2000]、（2000,3000]、（3000,4000]</p>
+<p><img src="https://pic4.zhimg.com/80/v2-7a6aeaa5cde957a95985553912c6435f_720w.jpg" srcset="/img/loading.gif" alt="img"></p>
+<p><code>Tinyid</code>提供<code>http</code>和<code>tinyid-client</code>两种方式接入</p>
+<p>Http方式接入</p>
+<p>（1）导入Tinyid源码：</p>
+<p>git clone <a href="https://link.zhihu.com/?target=https%3A//github.com/didi/tinyid.git">github.com/didi/tinyid…</a></p>
+<p>（2）创建数据表：</p>
+<pre><code class="hljs java">CREATE TABLE `tiny_id_info` (
+  `id` bigint(<span class="hljs-number">20</span>) unsigned NOT NULL AUTO_INCREMENT COMMENT <span class="hljs-string">'自增主键'</span>,
+  `biz_type` varchar(<span class="hljs-number">63</span>) NOT NULL DEFAULT <span class="hljs-string">''</span> COMMENT <span class="hljs-string">'业务类型，唯一'</span>,
+  `begin_id` bigint(<span class="hljs-number">20</span>) NOT NULL DEFAULT <span class="hljs-string">'0'</span> COMMENT <span class="hljs-string">'开始id，仅记录初始值，无其他含义。初始化时begin_id和max_id应相同'</span>,
+  `max_id` bigint(<span class="hljs-number">20</span>) NOT NULL DEFAULT <span class="hljs-string">'0'</span> COMMENT <span class="hljs-string">'当前最大id'</span>,
+  `step` <span class="hljs-keyword">int</span>(<span class="hljs-number">11</span>) DEFAULT <span class="hljs-string">'0'</span> COMMENT <span class="hljs-string">'步长'</span>,
+  `delta` <span class="hljs-keyword">int</span>(<span class="hljs-number">11</span>) NOT NULL DEFAULT <span class="hljs-string">'1'</span> COMMENT <span class="hljs-string">'每次id增量'</span>,
+  `remainder` <span class="hljs-keyword">int</span>(<span class="hljs-number">11</span>) NOT NULL DEFAULT <span class="hljs-string">'0'</span> COMMENT <span class="hljs-string">'余数'</span>,
+  `create_time` timestamp NOT NULL DEFAULT <span class="hljs-string">'2010-01-01 00:00:00'</span> COMMENT <span class="hljs-string">'创建时间'</span>,
+  `update_time` timestamp NOT NULL DEFAULT <span class="hljs-string">'2010-01-01 00:00:00'</span> COMMENT <span class="hljs-string">'更新时间'</span>,
+  `version` bigint(<span class="hljs-number">20</span>) NOT NULL DEFAULT <span class="hljs-string">'0'</span> COMMENT <span class="hljs-string">'版本号'</span>,
+  <span class="hljs-function">PRIMARY <span class="hljs-title">KEY</span> <span class="hljs-params">(`id`)</span>,</span>
+<span class="hljs-function">  UNIQUE KEY `uniq_biz_type` <span class="hljs-params">(`biz_type`)</span></span>
+<span class="hljs-function">) ENGINE</span>=InnoDB AUTO_INCREMENT=<span class="hljs-number">1</span> DEFAULT CHARSET=utf8 COMMENT <span class="hljs-string">'id信息表'</span>;
+
+CREATE TABLE `tiny_id_token` (
+  `id` <span class="hljs-keyword">int</span>(<span class="hljs-number">11</span>) unsigned NOT NULL AUTO_INCREMENT COMMENT <span class="hljs-string">'自增id'</span>,
+  `token` varchar(<span class="hljs-number">255</span>) NOT NULL DEFAULT <span class="hljs-string">''</span> COMMENT <span class="hljs-string">'token'</span>,
+  `biz_type` varchar(<span class="hljs-number">63</span>) NOT NULL DEFAULT <span class="hljs-string">''</span> COMMENT <span class="hljs-string">'此token可访问的业务类型标识'</span>,
+  `remark` varchar(<span class="hljs-number">255</span>) NOT NULL DEFAULT <span class="hljs-string">''</span> COMMENT <span class="hljs-string">'备注'</span>,
+  `create_time` timestamp NOT NULL DEFAULT <span class="hljs-string">'2010-01-01 00:00:00'</span> COMMENT <span class="hljs-string">'创建时间'</span>,
+  `update_time` timestamp NOT NULL DEFAULT <span class="hljs-string">'2010-01-01 00:00:00'</span> COMMENT <span class="hljs-string">'更新时间'</span>,
+  <span class="hljs-function">PRIMARY <span class="hljs-title">KEY</span> <span class="hljs-params">(`id`)</span></span>
+<span class="hljs-function">) ENGINE</span>=InnoDB AUTO_INCREMENT=<span class="hljs-number">1</span> DEFAULT CHARSET=utf8 COMMENT <span class="hljs-string">'token信息表'</span>;
+
+INSERT INTO `tiny_id_info` (`id`, `biz_type`, `begin_id`, `max_id`, `step`, `delta`, `remainder`, `create_time`, `update_time`, `version`)
+VALUES
+	(<span class="hljs-number">1</span>, <span class="hljs-string">'test'</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">100000</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-string">'2018-07-21 23:52:58'</span>, <span class="hljs-string">'2018-07-22 23:19:27'</span>, <span class="hljs-number">1</span>);
+
+INSERT INTO `tiny_id_info` (`id`, `biz_type`, `begin_id`, `max_id`, `step`, `delta`, `remainder`, `create_time`, `update_time`, `version`)
+VALUES
+	(<span class="hljs-number">2</span>, <span class="hljs-string">'test_odd'</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">100000</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-string">'2018-07-21 23:52:58'</span>, <span class="hljs-string">'2018-07-23 00:39:24'</span>, <span class="hljs-number">3</span>);
+
+
+INSERT INTO `tiny_id_token` (`id`, `token`, `biz_type`, `remark`, `create_time`, `update_time`)
+VALUES
+	(<span class="hljs-number">1</span>, <span class="hljs-string">'0f673adf80504e2eaa552f5d791b644c'</span>, <span class="hljs-string">'test'</span>, <span class="hljs-string">'1'</span>, <span class="hljs-string">'2017-12-14 16:36:46'</span>, <span class="hljs-string">'2017-12-14 16:36:48'</span>);
+
+INSERT INTO `tiny_id_token` (`id`, `token`, `biz_type`, `remark`, `create_time`, `update_time`)
+VALUES
+	(<span class="hljs-number">2</span>, <span class="hljs-string">'0f673adf80504e2eaa552f5d791b644c'</span>, <span class="hljs-string">'test_odd'</span>, <span class="hljs-string">'1'</span>, <span class="hljs-string">'2017-12-14 16:36:46'</span>, <span class="hljs-string">'2017-12-14 16:36:48'</span>);</code></pre>
+
+<p>（3）配置数据库：</p>
+<pre><code class="hljs java">datasource.tinyid.names=primary
+datasource.tinyid.primary.driver-<span class="hljs-class"><span class="hljs-keyword">class</span>-<span class="hljs-title">name</span></span>=com.mysql.jdbc.Driver
+datasource.tinyid.primary.url=jdbc:mysql:<span class="hljs-comment">//ip:port/databaseName?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8</span>
+datasource.tinyid.primary.username=root
+datasource.tinyid.primary.password=<span class="hljs-number">123456</span></code></pre>
+
+<p>（4）启动<code>tinyid-server</code>后测试</p>
+<pre><code class="hljs java">获取分布式自增ID: http:<span class="hljs-comment">//localhost:9999/tinyid/id/nextIdSimple?bizType=test&amp;token=0f673adf80504e2eaa552f5d791b644c'</span>
+返回结果: <span class="hljs-number">3</span>
+
+批量获取分布式自增ID:
+http:<span class="hljs-comment">//localhost:9999/tinyid/id/nextIdSimple?bizType=test&amp;token=0f673adf80504e2eaa552f5d791b644c&amp;batchSize=10'</span>
+返回结果:  <span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">8</span>,<span class="hljs-number">9</span>,<span class="hljs-number">10</span>,<span class="hljs-number">11</span>,<span class="hljs-number">12</span>,<span class="hljs-number">13</span></code></pre>
+
+<p>Java客户端方式接入</p>
+<p>重复Http方式的（2）（3）操作</p>
+<p>引入依赖</p>
+<pre><code class="hljs java">&lt;dependency&gt;
+     &lt;groupId&gt;com.xiaoju.uemc.tinyid&lt;/groupId&gt;
+     &lt;artifactId&gt;tinyid-client&lt;/artifactId&gt;
+     &lt;version&gt;$&#123;tinyid.version&#125;&lt;/version&gt;
+ &lt;/dependency&gt;</code></pre>
+
+<p>配置文件</p>
+<pre><code class="hljs java">tinyid.server =localhost:<span class="hljs-number">9999</span>
+tinyid.token =<span class="hljs-number">0f</span>673adf80504e2eaa552f5d791b644c</code></pre>
+
+<p><code>test</code> 、<code>tinyid.token</code>是在数据库表中预先插入的数据，<code>test</code> 是具体业务类型，<code>tinyid.token</code>表示可访问的业务类型</p>
+<pre><code class="hljs java"><span class="hljs-comment">// 获取单个分布式自增ID</span>
+Long id =  TinyId . nextId( <span class="hljs-string">" test "</span> );
+
+<span class="hljs-comment">// 按需批量分布式自增ID</span>
+List&lt; Long &gt; ids =  TinyId . nextId( <span class="hljs-string">" test "</span> , <span class="hljs-number">10</span> );</code></pre>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文只是简单介绍一下每种分布式ID生成器，旨在给大家一个详细学习的方向，每种生成方式都有它自己的优缺点，具体如何使用还要看具体的业务需求。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/12/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">分布式事务</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/12/window/">
+                        <span class="hidden-mobile">window</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    function loadUtterances() {
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'wdx13666/comment');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('theme', 'github-light');
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    }
+    waitElementVisible('comments', loadUtterances)
+  </script>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-md">
+    <div class="container custom post-content mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'random',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"name","artist":"artist","url":"/songs/test.mp3","cover":"/img/cover.jpg"},{"name":"name","artist":"artist","url":"https://...url.mp3","cover":"https://...cover.jpg"}]
+    });
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+  <!-- 备案信息 -->
+  <div class="beian">
+    <a href="http://beian.miit.gov.cn/" target="_blank"
+       rel="nofollow noopener">京ICP备20023356号-1</a>
+    
+  </div>
+
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h5',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 6,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "分布式ID&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

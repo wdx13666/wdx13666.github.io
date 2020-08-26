@@ -1,0 +1,720 @@
+
+
+<!DOCTYPE html>
+<html lang="en" >
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="wdx">
+  <meta name="keywords" content="">
+  <title>Git的四个组成部分 - Tuan Dog</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/gitalk/1.6.2/gitalk.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>TUAN DOG</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                Links
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2020-08-12 15:08" pubdate>
+      August 12, 2020 pm
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      17
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">Git的四个组成部分</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <blockquote>
+<p><strong>Git的四个组成部分</strong></p>
+</blockquote>
+<p><img src="/12/Git%E7%9A%84%E5%9B%9B%E4%B8%AA%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86/640.webp" srcset="/img/loading.gif" alt="img"></p>
+<p>1、初始化仓库</p>
+<pre><code class="hljs ebnf"><span class="hljs-attribute">git init</span></code></pre>
+
+<p>2、将文件添加到仓库</p>
+<pre><code class="hljs dockerfile">git <span class="hljs-keyword">add</span><span class="bash"> 文件名 <span class="hljs-comment"># 将工作区的某个文件添加到暂存区</span></span>
+git <span class="hljs-keyword">add</span><span class="bash"> -u <span class="hljs-comment"># 添加所有被tracked文件中被修改或删除的文件信息到暂存区，不处理untracked的文件</span></span>
+git <span class="hljs-keyword">add</span><span class="bash"> -A <span class="hljs-comment"># 添加所有被tracked文件中被修改或删除的文件信息到暂存区，包括untracked的文件</span></span>
+git <span class="hljs-keyword">add</span><span class="bash"> . <span class="hljs-comment"># 将当前工作区的所有文件都加入暂存区</span></span>
+git <span class="hljs-keyword">add</span><span class="bash"> -i <span class="hljs-comment"># 进入交互界面模式，按需添加文件到缓存区</span></span></code></pre>
+
+<p>3、将暂存区文件提交到本地仓库</p>
+<pre><code class="hljs sql">git <span class="hljs-keyword">commit</span> -m <span class="hljs-string">"提交说明"</span> <span class="hljs-comment"># 将暂存区内容提交到本地仓库</span>
+git <span class="hljs-keyword">commit</span> -a -m <span class="hljs-string">"提交说明"</span> <span class="hljs-comment"># 跳过缓存区操作，直接把工作区内容提交到本地仓库</span></code></pre>
+
+<p>4、查看仓库当前状态</p>
+<pre><code class="hljs ebnf"><span class="hljs-attribute">git status</span></code></pre>
+
+<p>5、比较文件异同</p>
+<pre><code class="hljs mipsasm">git <span class="hljs-keyword">diff </span><span class="hljs-comment"># 工作区与暂存区的差异</span>
+git <span class="hljs-keyword">diff </span>分支名 <span class="hljs-comment">#工作区与某分支的差异，远程分支这样写：remotes/origin/分支名</span>
+git <span class="hljs-keyword">diff </span>HEAD  <span class="hljs-comment"># 工作区与HEAD指针指向的内容差异</span>
+git <span class="hljs-keyword">diff </span>提交id 文件路径 <span class="hljs-comment"># 工作区某文件当前版本与历史版本的差异</span>
+git <span class="hljs-keyword">diff </span>--stage <span class="hljs-comment"># 工作区文件与上次提交的差异(1.6 版本前用 --cached)</span>
+git <span class="hljs-keyword">diff </span>版本TAG <span class="hljs-comment"># 查看从某个版本后都改动内容</span>
+git <span class="hljs-keyword">diff </span>分支A 分支<span class="hljs-keyword">B </span><span class="hljs-comment"># 比较从分支A和分支B的差异(也支持比较两个TAG)</span>
+git <span class="hljs-keyword">diff </span>分支A...分支<span class="hljs-keyword">B </span><span class="hljs-comment"># 比较两分支在分开后各自的改动</span>
+
+<span class="hljs-comment"># 另外：如果只想统计哪些文件被改动，多少行被改动，可以添加 --stat 参数</span></code></pre>
+
+<p>6、查看历史记录</p>
+<pre><code class="hljs perl">git <span class="hljs-keyword">log</span> <span class="hljs-comment"># 查看所有commit记录(SHA-A校验和，作者名称，邮箱，提交时间，提交说明)</span>
+git <span class="hljs-keyword">log</span> -p -次数 <span class="hljs-comment"># 查看最近多少次的提交记录</span>
+git <span class="hljs-keyword">log</span> --<span class="hljs-keyword">stat</span> <span class="hljs-comment"># 简略显示每次提交的内容更改</span>
+git <span class="hljs-keyword">log</span> --name-only <span class="hljs-comment"># 仅显示已修改的文件清单</span>
+git <span class="hljs-keyword">log</span> --name-status <span class="hljs-comment"># 显示新增，修改，删除的文件清单</span>
+git <span class="hljs-keyword">log</span> --oneline <span class="hljs-comment"># 让提交记录以精简的一行输出</span>
+git <span class="hljs-keyword">log</span> –graph –all --online <span class="hljs-comment"># 图形展示分支的合并历史</span>
+git <span class="hljs-keyword">log</span> --author=作者  <span class="hljs-comment"># 查询作者的提交记录(和grep同时使用要加一个--all--match参数)</span>
+git <span class="hljs-keyword">log</span> --<span class="hljs-keyword">grep</span>=过滤信息 <span class="hljs-comment"># 列出提交信息中包含过滤信息的提交记录</span>
+git <span class="hljs-keyword">log</span> -S查询内容 <span class="hljs-comment"># 和--grep类似，S和查询内容间没有空格</span>
+git <span class="hljs-keyword">log</span> fileName <span class="hljs-comment"># 查看某文件的修改记录，找背锅专用</span></code></pre>
+
+<p>7、代码回滚</p>
+<pre><code class="hljs sql">git <span class="hljs-keyword">reset</span> <span class="hljs-keyword">HEAD</span>^ <span class="hljs-comment"># 恢复成上次提交的版本</span>
+git <span class="hljs-keyword">reset</span> <span class="hljs-keyword">HEAD</span>^^ <span class="hljs-comment"># 恢复成上上次提交的版本，就是多个^，以此类推或用~次数</span>
+
+git reflog
+
+git <span class="hljs-keyword">reset</span> <span class="hljs-comment">--hard 版本号</span>
+
+<span class="hljs-comment">--soft：只是改变HEAD指针指向，缓存区和工作区不变；</span>
+<span class="hljs-comment">--mixed：修改HEAD指针指向，暂存区内容丢失，工作区不变；</span>
+<span class="hljs-comment">--hard：修改HEAD指针指向，暂存区内容丢失，工作区恢复以前状态；</span></code></pre>
+
+<p>8、同步远程仓库</p>
+<pre><code class="hljs maxima">git <span class="hljs-built_in">push</span> -u <span class="hljs-built_in">origin</span> master</code></pre>
+
+<p>9、删除版本库文件</p>
+<pre><code class="hljs nginx"><span class="hljs-attribute">git</span> rm 文件名</code></pre>
+
+<p>10、版本库里的版本替换工作区的版本</p>
+<pre><code class="hljs ada">git checkout <span class="hljs-comment">-- test.txt</span></code></pre>
+
+<p>11、本地仓库内容推送到远程仓库</p>
+<pre><code class="hljs dockerfile">git remote <span class="hljs-keyword">add</span><span class="bash"> origin git@github.com:帐号名/仓库名.git</span></code></pre>
+
+<p>12、从远程仓库克隆项目到本地</p>
+<pre><code class="hljs crmsh">git <span class="hljs-keyword">clone</span> <span class="hljs-title">git</span>@github.com:git帐号名/仓库名.git</code></pre>
+
+<p>13、创建分支</p>
+<pre><code class="hljs q">git checkout -b <span class="hljs-built_in">dev</span>
+-b表示创建并切换分支
+上面一条命令相当于一面的二条：
+git branch <span class="hljs-built_in">dev</span> <span class="hljs-comment">//创建分支</span>
+git checkout <span class="hljs-built_in">dev</span> <span class="hljs-comment">//切换分支</span></code></pre>
+
+<p>14、查看分支</p>
+<pre><code class="hljs ebnf"><span class="hljs-attribute">git branch</span></code></pre>
+
+<p>15、合并分支</p>
+<pre><code class="hljs stata">git <span class="hljs-keyword">merge</span> dev
+<span class="hljs-comment">//用于合并指定分支到当前分支</span>
+
+git <span class="hljs-keyword">merge</span> --<span class="hljs-keyword">no</span>-ff -<span class="hljs-keyword">m</span> <span class="hljs-string">"merge with no-ff"</span> dev
+<span class="hljs-comment">//加上--no-ff参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并</span></code></pre>
+
+<p>16、删除分支</p>
+<pre><code class="hljs armasm"><span class="hljs-symbol">git</span> <span class="hljs-keyword">branch </span>-d dev</code></pre>
+
+<p>17、查看分支合并图</p>
+<pre><code class="hljs applescript">git <span class="hljs-built_in">log</span> <span class="hljs-comment">--graph --pretty=oneline --abbrev-commit</span></code></pre>
+
+<p>18、查看远程库信息</p>
+<pre><code class="hljs 1c">git remote
+<span class="hljs-comment">// -v 显示更详细的信息</span></code></pre>
+
+<p>19、git相关配置</p>
+<pre><code class="hljs jboss-cli"><span class="hljs-comment"># 安装完Git后第一件要做的事，设置用户信息(global可换成local在单独项目生效)：</span>
+git config <span class="hljs-params">--global</span> user.name <span class="hljs-string">"用户名"</span> <span class="hljs-comment"># 设置用户名</span>
+git config <span class="hljs-params">--global</span> user.email <span class="hljs-string">"用户邮箱"</span>   <span class="hljs-comment">#设置邮箱</span>
+git config <span class="hljs-params">--global</span> user.name   <span class="hljs-comment"># 查看用户名是否配置成功</span>
+git config <span class="hljs-params">--global</span> user.email   <span class="hljs-comment"># 查看邮箱是否配置</span>
+
+<span class="hljs-comment"># 其他查看配置相关</span>
+git config <span class="hljs-params">--global</span> <span class="hljs-params">--list</span>  <span class="hljs-comment"># 查看全局设置相关参数列表</span>
+git config <span class="hljs-params">--local</span> <span class="hljs-params">--list</span> <span class="hljs-comment"># 查看本地设置相关参数列表</span>
+git config <span class="hljs-params">--system</span> <span class="hljs-params">--list</span> <span class="hljs-comment"># 查看系统配置参数列表</span>
+git config <span class="hljs-params">--list</span>  <span class="hljs-comment"># 查看所有Git的配置(全局+本地+系统)</span>
+git config <span class="hljs-params">--global</span> color.ui <span class="hljs-literal">true</span> <span class="hljs-string">//</span>显示git相关颜色</code></pre>
+
+<p>20、撤消某次提交</p>
+<pre><code class="hljs nginx"><span class="hljs-attribute">git</span> revert HEAD <span class="hljs-comment"># 撤销最近的一个提交</span>
+git revert 版本号 <span class="hljs-comment"># 撤销某次commit</span></code></pre>
+
+<p>21、拉取远程分支到本地仓库</p>
+<pre><code class="hljs mipsasm">git checkout -<span class="hljs-keyword">b </span>本地分支 远程分支 <span class="hljs-comment"># 会在本地新建分支，并自动切换到该分支</span>
+git fetch <span class="hljs-keyword">origin </span>远程分支:本地分支 <span class="hljs-comment"># 会在本地新建分支，但不会自动切换，还需checkout</span>
+git <span class="hljs-keyword">branch </span>--set-upstream 本地分支 远程分支 <span class="hljs-comment"># 建立本地分支与远程分支的链接</span></code></pre>
+
+<p>22、标签命令</p>
+<pre><code class="hljs crmsh">git <span class="hljs-keyword">tag</span> <span class="hljs-title">标签 //打标签命令，默认为HEAD</span>
+git <span class="hljs-keyword">tag</span> <span class="hljs-title">//显示所有标签</span>
+<span class="hljs-title">git</span> <span class="hljs-keyword">tag</span> <span class="hljs-title">标签 �版本号 //给某个commit</span>版本添加标签
+git show 标签 //显示某个标签的详细信息</code></pre>
+
+<p>23、同步远程仓库更新</p>
+<pre><code class="hljs crmsh">git fetch  origin <span class="hljs-literal">master</span>
+ //从远程获取最新的到本地，首先从远程的origin的<span class="hljs-literal">master</span>主分支下载最新的版本到origin/<span class="hljs-literal">master</span>分支上，然后比较本地的<span class="hljs-literal">master</span>分支和origin/<span class="hljs-literal">master</span>分支的差别，最后进行合并。
+
+git fetch比git pull更加安全</code></pre>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/08/12/HashMap/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">HashMap</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/12/Dubbo/">
+                        <span class="hidden-mobile">Dubbo</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <script type="text/javascript">
+    function loadUtterances() {
+      var s = document.createElement('script');
+      s.setAttribute('src', 'https://utteranc.es/client.js');
+      s.setAttribute('repo', 'wdx13666/comment');
+      s.setAttribute('issue-term', 'pathname');
+      
+      s.setAttribute('theme', 'github-light');
+      s.setAttribute('crossorigin', 'anonymous');
+      document.getElementById('comments').appendChild(s);
+    }
+    waitElementVisible('comments', loadUtterances)
+  </script>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+  <div class="col-lg-7 mx-auto nopadding-md">
+    <div class="container custom post-content mx-auto">
+      <img src="https://octodex.github.com/images/jetpacktocat.png" srcset="/img/loading.gif" class="rounded mx-auto d-block mt-5" style="width:150px; height:150px;">
+    </div>
+  </div>
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script defer src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script type="text/javascript">
+  var oldLoadAp = window.onload;
+  window.onload = function () {
+    oldLoadAp && oldLoadAp();
+
+    new APlayer({
+      container: document.getElementById('aplayer'),
+      fixed: true,
+      autoplay: 'false' === 'true',
+      loop: 'all',
+      order: 'random',
+      theme: '#b7daff',
+      preload: 'none',
+      audio: [{"name":"name","artist":"artist","url":"/songs/test.mp3","cover":"/img/cover.jpg"},{"name":"name","artist":"artist","url":"https://...url.mp3","cover":"https://...cover.jpg"}]
+    });
+  }
+</script>
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+  <!-- 备案信息 -->
+  <div class="beian">
+    <a href="http://beian.miit.gov.cn/" target="_blank"
+       rel="nofollow noopener">京ICP备20023356号-1</a>
+    
+  </div>
+
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h5',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 6,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Git的四个组成部分&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript">
+      //定义获取词语下标
+      var a_idx = 0;
+      jQuery(document).ready(function ($) {
+        //点击body时触发事件
+        $("body").click(function (e) {
+          //需要显示的词语
+          var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+          //设置词语给span标签
+          var $i = $("<span/>").text(a[a_idx]);
+          //下标等于原来下标+1  余 词语总数
+          a_idx = (a_idx + 1) % a.length;
+          //获取鼠标指针的位置，分别相对于文档的左和右边缘。
+          //获取x和y的指针坐标
+          var x = e.pageX, y = e.pageY;
+          //在鼠标的指针的位置给$i定义的span标签添加css样式
+          $i.css({
+            "z-index": 999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": rand_color()
+          });
+          // 随机颜色
+          function rand_color() {
+            return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"
+          }
+          //在body添加这个标签
+          $("body").append($i);
+          //animate() 方法执行 CSS 属性集的自定义动画。
+          //该方法通过CSS样式将元素从一个状态改变为另一个状态。CSS属性值是逐渐改变的，这样就可以创建动画效果。
+          //详情请看http://www.w3school.com.cn/jquery/effect_animate.asp
+          $i.animate({
+            //将原来的位置向上移动180
+            "top": y - 180,
+            "opacity": 0
+            //1500动画的速度
+          }, 1500, function () {
+            //时间到了自动删除
+            $i.remove();
+          });
+        });
+      })
+      ;
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
